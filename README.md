@@ -1,0 +1,4 @@
+ic
+==
+
+Inversion of control
