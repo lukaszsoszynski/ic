@@ -4,7 +4,7 @@ import org.aspectj.lang.annotation.Pointcut;
 
 public class Pointcuts {
 
-	//problem with javaconfig (spring 3.2.2) when com.impaq.ic.spring.aspect.AspectConfiguration in "aspect class path"
+	//problem with javaconfig (spring 3.2.2) when com.impaq.ic.spring.aspect.AspectConfiguration in "aspect class path". Fixed in spring 4.0.0
 	@Pointcut("execution(* com.impaq.ic.spring.aspect.service.impl..*(..))")
 	public void everyServiceImpl(){}
 	
