@@ -6,7 +6,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.version>1.0-SNAPSHOT</project.version>
 		<project.url>http://www.impaqgroup.com/pl/</project.url>
-		<project.dependencies.spring.version>3.2.2.RELEASE</project.dependencies.spring.version>
+		<project.dependencies.spring.version>4.0.0.RELEASE</project.dependencies.spring.version>
 		<project.dependencies.deltaspike.version>0.3-incubating</project.dependencies.deltaspike.version>
 	</properties>
 
@@ -88,6 +88,11 @@
 				<groupId>javax.validation</groupId>
 				<artifactId>validation-api</artifactId>
 				<version>1.1.0.Final</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>5.0.2.Final</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

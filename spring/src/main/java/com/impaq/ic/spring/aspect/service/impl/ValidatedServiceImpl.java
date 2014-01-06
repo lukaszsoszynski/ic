@@ -1,11 +1,11 @@
-package com.impaq.ic.spring.aspect.impl;
+package com.impaq.ic.spring.aspect.service.impl;
 
 import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Service;
 
-import com.impaq.ic.spring.aspect.ValidatedService;
 import com.impaq.ic.spring.aspect.aspect.Validable;
+import com.impaq.ic.spring.aspect.service.ValidatedService;
 
 @Service
 @Validable

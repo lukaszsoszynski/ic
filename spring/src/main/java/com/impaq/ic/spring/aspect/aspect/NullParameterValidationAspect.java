@@ -14,15 +14,10 @@ import org.aspectj.lang.reflect.MethodSignature;
 @Aspect
 public class NullParameterValidationAspect {
 	
-	//problem with javaconfig when com.impaq.ic.spring.aspect.AspectConfiguration in "aspect class path"
-	@Pointcut("execution(* com.impaq.ic.spring.aspect.impl..*(..))")
-	private void everyServiceImpl(){}
-	
-	@Pointcut("@target(com.impaq.ic.spring.aspect.aspect.Validable)")
-	private void annotatedWithValid(){}
-	
-	@Before("everyServiceImpl() && annotatedWithValid()")
+//	@Before("com.impaq.ic.spring.aspect.aspect.Pointcuts.everyServiceImpl() && com.impaq.ic.spring.aspect.aspect.Pointcuts.annotatedWithValid()")
+	@Before("com.impaq.ic.spring.aspect.aspect.Pointcuts.annotatedWithValid()")
 	public void before(JoinPoint joinPoint)
+	
 			throws Throwable {
 		Object[] arguments = joinPoint.getArgs();
 		Object thisObject = joinPoint.getTarget();

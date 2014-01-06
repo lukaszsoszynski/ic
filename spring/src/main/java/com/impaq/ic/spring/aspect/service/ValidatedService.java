@@ -1,4 +1,4 @@
-package com.impaq.ic.spring.aspect;
+package com.impaq.ic.spring.aspect.service;
 
 import javax.validation.constraints.NotNull;
 

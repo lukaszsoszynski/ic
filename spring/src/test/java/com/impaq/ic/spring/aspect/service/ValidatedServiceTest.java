@@ -1,4 +1,4 @@
-package com.impaq.ic.spring.aspect;
+package com.impaq.ic.spring.aspect.service;
 
 import static org.fest.assertions.Assertions.assertThat;
 
@@ -9,8 +9,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.support.GenericApplicationContext;
 
 import com.impaq.ic.spring.aspect.AspectConfiguration;
-import com.impaq.ic.spring.aspect.ValidatedService;
-import com.impaq.ic.spring.aspect.impl.ValidatedServiceImpl;
+import com.impaq.ic.spring.aspect.service.ValidatedService;
+import com.impaq.ic.spring.aspect.service.impl.ValidatedServiceImpl;
 
 public class ValidatedServiceTest {
 
