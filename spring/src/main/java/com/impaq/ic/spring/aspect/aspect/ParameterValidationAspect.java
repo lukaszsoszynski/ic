@@ -39,11 +39,11 @@ public class ParameterValidationAspect {
 				.getMethod(joinPoint);
 
 		Annotation[][] interfaceParameterAnnotations = joinPointMethodAnnotationParameterResolver
-				.getInterfaveMethodParametersAnnotations(method);
+				.getMethodParametersAnnotations(method);
 		Method implementationMethod = joinPointMethodAnnotationParameterResolver
 				.getImplementationMethod(targerObject, method);
 		Annotation[][] implementationParameterAnnotation = joinPointMethodAnnotationParameterResolver
-				.getInterfaveMethodParametersAnnotations(implementationMethod);
+				.getMethodParametersAnnotations(implementationMethod);
 
 		Set<ConstraintViolation<Object>> constraintsViolations = new HashSet<ConstraintViolation<Object>>();
 

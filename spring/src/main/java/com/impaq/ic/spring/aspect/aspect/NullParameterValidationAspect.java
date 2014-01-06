@@ -40,7 +40,7 @@ public class NullParameterValidationAspect {
 		Method methodImplementation = joinPointMethodAnnotationParameterResolver
 				.getImplementationMethod(targetObject, method);
 		Annotation[][] allParameterAnnotationsArray = joinPointMethodAnnotationParameterResolver
-				.getInterfaveMethodParametersAnnotations(methodImplementation);
+				.getMethodParametersAnnotations(methodImplementation);
 		checkParameterAnnotations(allParameterAnnotationsArray, arguments);
 	}
 
@@ -48,7 +48,7 @@ public class NullParameterValidationAspect {
 		assert method != null;
 
 		Annotation[][] allParameterAnnotationsArray = joinPointMethodAnnotationParameterResolver
-				.getInterfaveMethodParametersAnnotations(method);
+				.getMethodParametersAnnotations(method);
 		checkParameterAnnotations(allParameterAnnotationsArray, arguments);
 		return method;
 	}

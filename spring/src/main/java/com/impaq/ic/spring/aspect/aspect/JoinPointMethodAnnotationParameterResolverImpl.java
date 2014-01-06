@@ -22,7 +22,7 @@ public class JoinPointMethodAnnotationParameterResolverImpl implements
 	}
 
 	@Override
-	public Annotation[][] getInterfaveMethodParametersAnnotations(Method method) {
+	public Annotation[][] getMethodParametersAnnotations(Method method) {
 		notNull(method, "Method must not be null");
 		
 		Annotation[][] allParameterAnnotationsArray = method.getParameterAnnotations();

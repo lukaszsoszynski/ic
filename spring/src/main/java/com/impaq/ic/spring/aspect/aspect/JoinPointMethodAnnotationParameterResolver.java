@@ -10,7 +10,7 @@ public interface JoinPointMethodAnnotationParameterResolver {
 	Method getImplementationMethod(Object targerObject, Method methodInterface)
 			throws NoSuchMethodException;
 
-	Annotation[][] getInterfaveMethodParametersAnnotations(Method method);
+	Annotation[][] getMethodParametersAnnotations(Method method);
 
 	Method getMethod(JoinPoint joinPoint);
 
