@@ -1,5 +1,6 @@
 package com.impaq.ic.spring.aspect.aspect;
 
+import static org.springframework.util.Assert.isTrue;
 import static org.springframework.util.Assert.notNull;
 
 import java.lang.annotation.Annotation;
@@ -21,7 +22,7 @@ public class JoinPointMethodAnnotationParameterResolverImpl implements
 	}
 
 	@Override
-	public Annotation[][] getMethodParametersAnnotations(Method method) {
+	public Annotation[][] getInterfaveMethodParametersAnnotations(Method method) {
 		notNull(method, "Method must not be null");
 		
 		Annotation[][] allParameterAnnotationsArray = method.getParameterAnnotations();
@@ -34,5 +35,21 @@ public class JoinPointMethodAnnotationParameterResolverImpl implements
 		
 		MethodSignature signature = (MethodSignature) joinPoint.getSignature();
 		return signature.getMethod();
+	}
+	
+	@Override
+	public boolean isMethodParameterAnnotatedWith(int parameterIndex,
+			Annotation[][] allParameterAnnotationsArray,
+			Class<?> annotationClass) {
+		isTrue(parameterIndex >= 0, "Parameter index mustn't be negative value " + parameterIndex);
+		notNull(allParameterAnnotationsArray, "All parameters array must not be null");
+		notNull(annotationClass, "Annotation class must not be null");
+		
+		Annotation[] parameterAnnotations = allParameterAnnotationsArray[parameterIndex];
+		boolean mustBeNotNull = false;
+		for(Annotation annotation : parameterAnnotations){
+			mustBeNotNull |= annotation.annotationType().isAssignableFrom(annotationClass);
+		}
+		return mustBeNotNull;
 	}
 }

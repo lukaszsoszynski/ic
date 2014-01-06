@@ -18,31 +18,36 @@ import com.impaq.ic.spring.aspect.service.impl.ValidatedServiceImpl;
 @Configuration
 @EnableAspectJAutoProxy
 public class AspectConfiguration {
-	
+
 	@Bean
 	@Autowired
-	public NullParameterValidationAspect createNullParameterValidationAspect(JoinPointMethodAnnotationParameterResolver joinPointMethodAnnotationParameterResolver){
-		return new NullParameterValidationAspect(joinPointMethodAnnotationParameterResolver);
+	public NullParameterValidationAspect createNullParameterValidationAspect(
+			JoinPointMethodAnnotationParameterResolver joinPointMethodAnnotationParameterResolver) {
+		return new NullParameterValidationAspect(
+				joinPointMethodAnnotationParameterResolver);
 	}
-	
+
 	@Bean
-	public ValidatedService createValidatedService(){
+	public ValidatedService createValidatedService() {
 		return new ValidatedServiceImpl();
 	}
-	
+
 	@Bean
-	public LocalValidatorFactoryBean createLocalValidatorFactoryBean(){
+	public LocalValidatorFactoryBean createLocalValidatorFactoryBean() {
 		return new LocalValidatorFactoryBean();
 	}
-	
+
 	@Bean
 	@Autowired
-	public ParameterValidationAspect createParameterValidationAspect(JoinPointMethodAnnotationParameterResolver joinPointMethodAnnotationParameterResolver, Validator validator){
-		return new ParameterValidationAspect(joinPointMethodAnnotationParameterResolver, validator);
+	public ParameterValidationAspect createParameterValidationAspect(
+			JoinPointMethodAnnotationParameterResolver joinPointMethodAnnotationParameterResolver,
+			Validator validator) {
+		return new ParameterValidationAspect(
+				joinPointMethodAnnotationParameterResolver, validator);
 	}
-	
+
 	@Bean
-	public JoinPointMethodAnnotationParameterResolver createcomJoinPointMethodAnnotationParameterResolverImpl(){
+	public JoinPointMethodAnnotationParameterResolver createcomJoinPointMethodAnnotationParameterResolverImpl() {
 		return new JoinPointMethodAnnotationParameterResolverImpl();
 	}
 }

@@ -11,23 +11,23 @@ import org.aspectj.lang.annotation.Before;
 
 @Aspect
 public class NullParameterValidationAspect {
-	
-private final JoinPointMethodAnnotationParameterResolver joinPointMethodAnnotationParameterResolver;
 
-public NullParameterValidationAspect(
+	private final JoinPointMethodAnnotationParameterResolver joinPointMethodAnnotationParameterResolver;
+
+	public NullParameterValidationAspect(
 			JoinPointMethodAnnotationParameterResolver joinPointMethodAnnotationParameterResolver) {
 		this.joinPointMethodAnnotationParameterResolver = joinPointMethodAnnotationParameterResolver;
 	}
 
-	//	@Before("com.impaq.ic.spring.aspect.aspect.Pointcuts.everyServiceImpl() && com.impaq.ic.spring.aspect.aspect.Pointcuts.annotatedWithValid()")
+	// @Before("com.impaq.ic.spring.aspect.aspect.Pointcuts.everyServiceImpl() && com.impaq.ic.spring.aspect.aspect.Pointcuts.annotatedWithValid()")
 	@Before("com.impaq.ic.spring.aspect.aspect.Pointcuts.annotatedWithValid()")
 	public void before(JoinPoint joinPoint)
-	
-			throws Throwable {
+	throws Throwable {
 		Object[] arguments = joinPoint.getArgs();
 		Object thisObject = joinPoint.getTarget();
-		Method method = joinPointMethodAnnotationParameterResolver.getMethod(joinPoint);
-		
+		Method method = joinPointMethodAnnotationParameterResolver
+				.getMethod(joinPoint);
+
 		checkInterfaceAnnotations(method, arguments);
 		checkImplementationMethod(thisObject, method, arguments);
 	}
@@ -36,33 +36,32 @@ public NullParameterValidationAspect(
 			Object[] arguments) throws NoSuchMethodException {
 		assert targetObject != null;
 		assert method != null;
-		
-		Method methodImplementation = joinPointMethodAnnotationParameterResolver.getImplementationMethod(targetObject, method);
-		Annotation[][] allParameterAnnotationsArray = joinPointMethodAnnotationParameterResolver.getMethodParametersAnnotations(methodImplementation);
+
+		Method methodImplementation = joinPointMethodAnnotationParameterResolver
+				.getImplementationMethod(targetObject, method);
+		Annotation[][] allParameterAnnotationsArray = joinPointMethodAnnotationParameterResolver
+				.getInterfaveMethodParametersAnnotations(methodImplementation);
 		checkParameterAnnotations(allParameterAnnotationsArray, arguments);
 	}
 
-	private Method checkInterfaceAnnotations(Method method,
-			Object[] arguments) {
+	private Method checkInterfaceAnnotations(Method method, Object[] arguments) {
 		assert method != null;
-		
-		
-		Annotation[][] allParameterAnnotationsArray = joinPointMethodAnnotationParameterResolver.getMethodParametersAnnotations(method);
+
+		Annotation[][] allParameterAnnotationsArray = joinPointMethodAnnotationParameterResolver
+				.getInterfaveMethodParametersAnnotations(method);
 		checkParameterAnnotations(allParameterAnnotationsArray, arguments);
 		return method;
 	}
 
-	private void checkParameterAnnotations(Annotation[][] allParameterAnnotationsArray,
-			Object[] arguments) {
+	private void checkParameterAnnotations(
+			Annotation[][] allParameterAnnotationsArray, Object[] arguments) {
 		assert allParameterAnnotationsArray != null;
-		
-		for(int i = 0; i < arguments.length; ++i){
-			Annotation[] parameterAnnotations = allParameterAnnotationsArray[i];
-			boolean mustBeNotNull = false;
-			for(Annotation annotation : parameterAnnotations){
-				mustBeNotNull |= annotation.annotationType().isAssignableFrom(NotNull.class);
-			}
-			if(mustBeNotNull && arguments[i] == null){
+
+		for (int i = 0; i < arguments.length; ++i) {
+			boolean mustBeNotNull = joinPointMethodAnnotationParameterResolver
+					.isMethodParameterAnnotatedWith(i,
+							allParameterAnnotationsArray, NotNull.class);
+			if (mustBeNotNull && arguments[i] == null) {
 				throw new IllegalArgumentException("Argument must not be null");
 			}
 		}

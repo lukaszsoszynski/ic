@@ -1,10 +1,12 @@
 package com.impaq.ic.spring.aspect.service.impl;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Service;
 
 import com.impaq.ic.spring.aspect.aspect.Validable;
+import com.impaq.ic.spring.aspect.model.ValidableModelObject;
 import com.impaq.ic.spring.aspect.service.ValidatedService;
 
 @Service
@@ -24,12 +26,6 @@ public class ValidatedServiceImpl implements ValidatedService {
 
 	}
 
-	private String print(Number number) {
-		String output = "Given number " + number;
-		System.out.println(output);
-		return output;
-	}
-
 	@Override
 	public String displayValue(@NotNull Number number) {
 		return print(number);
@@ -38,5 +34,28 @@ public class ValidatedServiceImpl implements ValidatedService {
 	@Override
 	public String noParamMethod() {
 		return NO_PARAMETER_METHOD_OUTPUT;
+	}
+
+	@Override
+	public String displayObjectValue(@Valid ValidableModelObject validableModelObject) {
+		return print(validableModelObject);
+	}
+	
+	@Override
+	public String showObjectValue(ValidableModelObject validableModelObject) {
+		return print(validableModelObject);
+	}
+
+	private String print(ValidableModelObject validableModelObject) {
+		if (validableModelObject == null) {
+			return null;
+		}
+		return print(validableModelObject.toString());
+	}
+	
+	private String print(Object number) {
+		String output = "Given number " + number;
+		System.out.println(output);
+		return output;
 	}
 }
